@@ -9,6 +9,7 @@ const CreateService = () => {
   const [serviceName, setServiceName] = useState<string>("");
   const [url, setUrl] = useState<string>("");
   const [errors, setErrors] = useState<Error[]>([]);
+  const [showSuccess, setShowSuccess] = useState<boolean>(false);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -20,8 +21,8 @@ const CreateService = () => {
     }
 
     addService({ name: serviceName, url }).then(
-      () => console.log("success"),
-      () => console.log("failed")
+      () => setShowSuccess(true),
+      () => setErrors((prev) => [...prev, "UNKNOWN_ERROR"])
     );
   };
 
@@ -32,6 +33,7 @@ const CreateService = () => {
     url: url,
     setUrl: setUrl,
     errors,
+    showSuccess,
   };
 
   return (

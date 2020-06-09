@@ -3,6 +3,7 @@ import Button, { ButtonContainer } from "../Button";
 import styles from "./styles.module.css";
 import ErrorMessage from "./ErrorMessage";
 import { Error } from "../../types";
+import AlertBox from "../AlertBox";
 
 type FormProps = {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
@@ -11,10 +12,23 @@ type FormProps = {
   setName: (name: string) => void;
   url: string;
   setUrl: (url: string) => void;
+  showSuccess?: boolean;
 };
-const Form = ({ onSubmit, errors, name, setName, url, setUrl }: FormProps) => {
+
+const Form = ({
+  onSubmit,
+  errors,
+  name,
+  setName,
+  url,
+  setUrl,
+  showSuccess,
+}: FormProps) => {
   return (
     <>
+      {showSuccess && (
+        <AlertBox message={"Form submitted successfully"} type="SUCCESS" />
+      )}
       {errors.length !== 0 && <ErrorMessage errors={errors} />}
       <form onSubmit={onSubmit} className={styles.formContainer}>
         <div className={styles.group}>
