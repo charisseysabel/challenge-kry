@@ -62,7 +62,9 @@ const Form = ({
         </div>
 
         <ButtonContainer>
-          <Button type="submit">Create service</Button>
+          <Button type="submit" kind="PRIMARY">
+            Create service
+          </Button>
         </ButtonContainer>
       </form>
     </>
