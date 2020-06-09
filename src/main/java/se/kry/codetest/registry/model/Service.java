@@ -2,6 +2,8 @@ package se.kry.codetest.registry.model;
 
 import java.net.URL;
 import java.time.Instant;
+import java.util.Base64;
+import java.util.UUID;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -9,10 +11,18 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * Describes a service registered in the internal registry.
  */
 public class Service {
+    private String id = createUrlSafeId();
     private String name;
     private URL url;
     private Instant addTime;
     private ServiceStatus status;
+
+    private static String createUrlSafeId() {
+        byte[] randomIdAsBytes = UUID.randomUUID().toString().getBytes();
+        return Base64.getUrlEncoder().encodeToString(randomIdAsBytes);
+    }
+
+    public String getId() { return this.id; }
 
     /**
      * @return The name of the service.
