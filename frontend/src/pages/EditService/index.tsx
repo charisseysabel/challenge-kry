@@ -15,6 +15,7 @@ const EditService = ({ service }: { service: EditServiceProps }) => {
   const [editName, setEditName] = useState<string>(service.name);
   const [editUrl, setEditUrl] = useState<string>(service.url);
   const [errors, setErrors] = useState<Error[]>([]);
+  const [showSuccess, setShowSuccess] = useState<boolean>(false);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -25,8 +26,8 @@ const EditService = ({ service }: { service: EditServiceProps }) => {
       return;
     } else {
       updateService({ ...service, name: editName, url: editUrl }).then(
-        () => console.log("success"),
-        () => console.log("failed update")
+        () => setShowSuccess(true),
+        () => setErrors((prev) => [...prev, "UNKNOWN_ERROR"])
       );
     }
   };
@@ -39,6 +40,7 @@ const EditService = ({ service }: { service: EditServiceProps }) => {
     setUrl: setEditUrl,
     errors,
     isCreate: false,
+    showSuccess,
   };
 
   return (
