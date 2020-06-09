@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Button from "../../components/Button";
 import { Service } from "../../types";
+import styles from "./styles.module.css";
 
 const ActionContainer = ({
   onDelete,
@@ -17,6 +18,7 @@ const ActionContainer = ({
           pathname: `/edit/${service.id}`,
           state: service,
         }}
+        className={styles.editLink}
       >
         Edit
       </Link>

@@ -54,3 +54,10 @@
 .statusUnknown {
   background-color: grey;
 }
+
+.editLink {
+  text-decoration: none;
+  margin-right: 10px;
+  composes: button from "../../components/Button/styles.module.css";
+  composes: primary from "../../components/Button/styles.module.css";
+}
