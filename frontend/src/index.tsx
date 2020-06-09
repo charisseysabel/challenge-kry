@@ -25,8 +25,8 @@ const Routing = () => {
     <Router>
       <nav>
         <ul className={styles.navList}>
-          {NAVIGATION_LINKS.map((n) => (
-            <li className={styles.navListItem}>
+          {NAVIGATION_LINKS.map((n, i) => (
+            <li className={styles.navListItem} key={i}>
               <NavLink
                 exact
                 to={n.link}

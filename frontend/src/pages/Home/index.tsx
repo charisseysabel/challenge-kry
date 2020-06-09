@@ -1,7 +1,7 @@
 import React from "react";
 import { Edit, List } from "react-feather";
 import "../../App.css";
-import { CardLink, Card } from "../../components/Card";
+import { Card, CardLink } from "../../components/Card";
 import styles from "./styles.module.css";
 
 function Home() {

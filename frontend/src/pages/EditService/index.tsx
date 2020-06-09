@@ -1,9 +1,9 @@
 import React, { useState } from "react";
+import { updateService } from "../../api/service";
+import { Card } from "../../components/Card";
 import Form from "../../components/Form";
 import { validateFields } from "../../components/Form/helpers/formValidators";
 import { Error } from "../../types";
-import { updateService } from "../../api/service";
-import { Card } from "../../components/Card";
 
 type EditServiceProps = {
   id: string;

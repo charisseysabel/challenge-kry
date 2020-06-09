@@ -1,5 +1,5 @@
 import axios from "axios";
-import { ServiceDto, BaseService, Service } from "../types";
+import { BaseService, Service, ServiceDto } from "../types";
 
 const BASE_URL =
   process.env.NODE_ENV === "development" ? "http://localhost:8080" : "";

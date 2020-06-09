@@ -1,5 +1,5 @@
-import React from "react";
 import className from "classnames";
+import React from "react";
 import styles from "./styles.module.css";
 
 type AlertBox = {
