@@ -1,6 +1,5 @@
 import React from "react";
 import { Edit, List } from "react-feather";
-import "../../App.css";
 import { Card, CardLink } from "../../components/Card";
 import styles from "./styles.module.css";
 
