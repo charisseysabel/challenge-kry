@@ -1,0 +1,9 @@
+.linkContainer {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.icon {
+  margin-bottom: 10px;
+}
