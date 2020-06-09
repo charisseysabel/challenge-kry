@@ -19,8 +19,8 @@ const useServicePoller = () => {
         setData(res);
         setIsLoading(false);
       },
-      () => {
-        stopPolling();
+      (e) => {
+        throw new Error(e);
       }
     );
   }, []);
