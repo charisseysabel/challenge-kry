@@ -6,6 +6,7 @@ import { Link } from "react-router-dom";
 import { Card } from "../../components/Card";
 import styles from "./styles.module.css";
 import Button from "../../components/Button";
+import Status from "./Status";
 
 const INITIAL_VALUES = {
   lastUpdate: "",
@@ -45,16 +46,8 @@ const ServiceList = () => {
       <ul className={styles.list}>
         {serviceDto.services.map((s: Service) => (
           <li key={s.id} className={styles.listItem}>
-            <div>
-              <div
-                className={className(styles.status, {
-                  [styles.statusGreen]: s.status === "OK",
-                  [styles.statusRed]: s.status === "FAIL",
-                  [styles.statusUnknown]: s.status === "UNKNOWN",
-                })}
-              >
-                {s.status}
-              </div>
+            <div className={styles.content}>
+              <Status status={s.status} />
               <h2 className={styles.name}>{s.name}</h2>
               <a href={s.url} className={styles.url}>
                 {s.url}

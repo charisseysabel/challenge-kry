@@ -10,7 +10,9 @@ export interface BaseService {
   url: string;
 }
 
+export type Status = "OK" | "UNKNOWN" | "FAIL";
+
 export interface Service extends BaseService {
   id: string;
-  status: "OK" | "UNKNOWN" | "FAIL";
+  status: Status;
 }
