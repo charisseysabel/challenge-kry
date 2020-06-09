@@ -1,4 +1,4 @@
-export type Error = "MISSING_NAME" | "INVALID_URL";
+export type Error = "MISSING_NAME" | "INVALID_URL" | "UNKNOWN_ERROR";
 
 export type ServiceDto = {
   lastUpdate: string;
