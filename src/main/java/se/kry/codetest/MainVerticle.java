@@ -61,6 +61,7 @@ public class MainVerticle extends AbstractVerticle {
             .allowedMethod(io.vertx.core.http.HttpMethod.GET)
             .allowedMethod(io.vertx.core.http.HttpMethod.POST)
             .allowedMethod(io.vertx.core.http.HttpMethod.OPTIONS)
+            .allowedMethod(io.vertx.core.http.HttpMethod.DELETE)
             .allowedHeader("Access-Control-Request-Method")
             .allowedHeader("Access-Control-Allow-Origin")
             .allowedHeader("Access-Control-Allow-Headers")

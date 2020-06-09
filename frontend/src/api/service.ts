@@ -20,6 +20,8 @@ export const editService = async (service: Service): Promise<any> => {
 };
 
 export const deleteService = async (serviceId: string): Promise<any> => {
-  const res = await axios.delete(`${BASE_URL}/service`, { data: serviceId });
+  const res = await axios.delete(`${BASE_URL}/service`, {
+    data: { id: serviceId },
+  });
   return res.data;
 };

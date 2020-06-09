@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Service, ServiceDto } from "../../types";
-import { getAllServices } from "../../api/service";
+import { getAllServices, deleteService } from "../../api/service";
 
 const INITIAL_VALUES = {
   lastUpdate: "",
@@ -21,6 +21,12 @@ const ServiceList = () => {
     );
   }, []);
 
+  const onDelete = (id: string) => {
+      () => console.log("delete success"),
+      () => console.log("delete fail")
+    );
+  };
+
   return (
     <div>
       {serviceDto.lastUpdate && (
@@ -38,6 +44,7 @@ const ServiceList = () => {
               <div>
                 <button onClick={() => undefined}>Edit</button>
                 <button onClick={() => undefined}>Delete</button>
+                <button onClick={() => onDelete(s.id)}>Delete</button>
               </div>
             </div>
           </li>
