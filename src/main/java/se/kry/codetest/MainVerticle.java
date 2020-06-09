@@ -16,6 +16,7 @@ import io.vertx.ext.web.handler.CorsHandler;
 import io.vertx.ext.web.handler.StaticHandler;
 import se.kry.codetest.registry.ServiceRegistry;
 import se.kry.codetest.registry.ServiceRegistryFactory;
+import se.kry.codetest.registry.model.Service;
 
 /**
  * Deploys a verticle that keeps a registry of services and their latest status. It also regularly polls
@@ -121,26 +122,10 @@ public class MainVerticle extends AbstractVerticle {
   private void handleGetServices(RoutingContext routingContext) {
     System.out.println("GET");
     registry.getServices().setHandler(res -> {
-      if (res.succeeded()) {
-        final List<JsonObject> jsonServices = res.result()
-                .stream()
-                .map(service ->
-                             new JsonObject()
-                                     .put("id", service.getId())
-                                     .put("name", service.getName())
-                                     .put("url", service.getUrl().toString())
-                                     .put("status", service.getStatus().toString()))
-                .collect(Collectors.toList());
-        System.out.println("GET result" + jsonServices.size());
-
-        JsonObject dto = new JsonObject()
-                .put("lastUpdate", Instant.now())
-                .put("services", new JsonArray(jsonServices));
-
-        routingContext.response()
-                .putHeader("content-type", "application/json")
-                .end(dto.encode());
-      }
+      JsonObject result = assembleResult(res);
+      routingContext.response()
+              .putHeader("content-type", "application/json")
+              .end(result.encode());
     });
   }
 
@@ -174,30 +159,11 @@ public class MainVerticle extends AbstractVerticle {
     try {
       registry.removeService(jsonBody.getString("id")).setHandler(
               res -> {
-
-                if (res.succeeded()) {
-                  final List<JsonObject> jsonServices = res.result()
-                          .stream()
-                          .map(service ->
-                                  new JsonObject()
-                                          .put("id", service.getId())
-                                          .put("name", service.getName())
-                                          .put("url", service.getUrl().toString())
-                                          .put("status", service.getStatus().toString()))
-                          .collect(Collectors.toList());
-                  System.out.println("GET result" + jsonServices.size());
-
-                  JsonObject dto = new JsonObject()
-                          .put("lastUpdate", Instant.now())
-                          .put("services", new JsonArray(jsonServices));
-
-                  routingContext.response()
-                          .putHeader("content-type", "application/json")
-                          .end(dto.encode());
-                }
-              }
-
-      );
+                JsonObject result = assembleResult(res);
+                routingContext.response()
+                        .putHeader("content-type", "application/json")
+                        .end(result.encode());
+              });
     } catch (IllegalArgumentException e) {
       routingContext.response()
               .putHeader("content-type", "application/json")
@@ -224,6 +190,28 @@ public class MainVerticle extends AbstractVerticle {
               .end();
     }
   }
+
+  private JsonObject assembleResult(AsyncResult<List<Service>> res) {
+    if (res.succeeded()) {
+      final List<JsonObject> jsonServices = res.result()
+              .stream()
+              .map(service ->
+                      new JsonObject()
+                              .put("id", service.getId())
+                              .put("name", service.getName())
+                              .put("url", service.getUrl().toString())
+                              .put("status", service.getStatus().toString()))
+              .collect(Collectors.toList());
+      System.out.println("GET result" + jsonServices.size());
+
+      return new JsonObject()
+              .put("lastUpdate", Instant.now())
+              .put("services", new JsonArray(jsonServices));
+    }
+
+    return new JsonObject();
+  }
+
 }
 
 
