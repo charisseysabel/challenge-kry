@@ -4,7 +4,7 @@ import { ServiceDto, BaseService, Service } from "../types";
 const BASE_URL =
   process.env.NODE_ENV === "development" ? "http://localhost:8080" : "";
 
-export const getAllServices = async (): Promise<ServiceDto[]> => {
+export const getAllServices = async (): Promise<ServiceDto> => {
   const res = await axios.get(`${BASE_URL}/service`);
   return await res.data;
 };

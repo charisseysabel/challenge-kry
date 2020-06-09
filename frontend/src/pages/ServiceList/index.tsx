@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Service, ServiceDto } from "../../types";
+import { getAllServices } from "../../api/service";
 
 const INITIAL_VALUES = {
   lastUpdate: "",
@@ -10,10 +11,15 @@ const ServiceList = () => {
   const [serviceDto, setServiceDto] = useState<ServiceDto>(INITIAL_VALUES);
 
   useEffect(() => {
-    // todo: api call
-    // api.getAllServices
-    // setServiceList
-  });
+    getAllServices().then(
+      (res) => {
+        setServiceDto(res);
+      },
+      (e) => {
+        throw new Error(e);
+      }
+    );
+  }, []);
 
   return (
     <div>

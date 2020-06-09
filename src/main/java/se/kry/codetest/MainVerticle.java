@@ -1,5 +1,6 @@
 package se.kry.codetest;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -108,9 +109,14 @@ public class MainVerticle extends AbstractVerticle {
                                      .put("status", Service.toString(service)))
                 .collect(Collectors.toList());
         System.out.println("GET result" + jsonServices.size());
+
+        JsonObject dto = new JsonObject()
+                .put("lastUpdate", Instant.now())
+                .put("services", new JsonArray(jsonServices));
+
         routingContext.response()
                 .putHeader("content-type", "application/json")
-                .end(new JsonArray(jsonServices).encode());
+                .end(dto.encode());
       }
     });
   }
