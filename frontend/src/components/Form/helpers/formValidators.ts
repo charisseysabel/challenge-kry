@@ -1,4 +1,4 @@
-import { Error } from "../types";
+import { Error } from "../../../pages/types";
 
 export const validateFields = (
   name: string,

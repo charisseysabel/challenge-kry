@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Form from "../Form";
+import Form from "../../components/Form";
 import { Error } from "../types";
-import { validateFields } from "../helpers/formValidators";
+import { validateFields } from "../../components/Form/helpers/formValidators";
 
 const CreateService = () => {
   const [serviceName, setServiceName] = useState<string>("");
