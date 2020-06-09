@@ -9,9 +9,9 @@ type EditServiceProps = {
   url: string;
 };
 
-const EditService = ({ props }: { props: EditServiceProps }) => {
-  const [editName, setEditName] = useState<string>(props.name);
-  const [editUrl, setEditUrl] = useState<string>(props.url);
+const EditService = ({ service }: { service: EditServiceProps }) => {
+  const [editName, setEditName] = useState<string>(service.name);
+  const [editUrl, setEditUrl] = useState<string>(service.url);
   const [errors, setErrors] = useState<Error[]>([]);
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {

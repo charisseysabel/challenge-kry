@@ -11,6 +11,7 @@ import CreateService from "./pages/CreateService";
 import Home from "./pages/Home";
 import ServiceList from "./pages/ServiceList";
 import * as serviceWorker from "./serviceWorker";
+import EditService from "./pages/EditService";
 
 const Routing = () => {
   return (
@@ -32,6 +33,12 @@ const Routing = () => {
       <Switch>
         <Route exact path="/" component={Home} />
         <Route path="/create" component={CreateService} />
+        <Route
+          path="/edit/:id"
+          render={(
+            { location }: { location: any } // todo: not sure where to get the type for this one..
+          ) => <EditService service={location.state} />}
+        />
         <Route path="/list" component={ServiceList} />
       </Switch>
     </Router>
