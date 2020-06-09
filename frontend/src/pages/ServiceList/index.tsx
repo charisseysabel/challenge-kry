@@ -12,12 +12,47 @@ const INITIAL_VALUES = {
   services: [],
 };
 
+const List = ({
+  services,
+  onDelete,
+}: {
+  services: Service[];
+  onDelete: (id: string) => void;
+}) => {
+  return (
+    <>
+      {services.length > 0 ? (
+        <ul className={styles.list}>
+          {services.map((s: Service) => (
+            <li key={s.id} className={styles.listItem}>
+              <div className={styles.content}>
+                <Status status={s.status} />
+                <h2 className={styles.name}>{s.name}</h2>
+                <a href={s.url} className={styles.url}>
+                  {s.url}
+                </a>
+              </div>
+              <ActionContainer onDelete={onDelete} service={s} />
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>No services found</p>
+      )}
+    </>
+  );
+};
+
 const ServiceList = () => {
   const [serviceDto, setServiceDto] = useState<ServiceDto>(INITIAL_VALUES);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+
+  const { services } = serviceDto;
 
   useEffect(() => {
     getAllServices().then(
       (res) => {
+        setIsLoading(false);
         setServiceDto(res);
       },
       (e) => {
@@ -44,20 +79,12 @@ const ServiceList = () => {
           Updated {moment().calendar(serviceDto.lastUpdate)}
         </small>
       )}
-      <ul className={styles.list}>
-        {serviceDto.services.map((s: Service) => (
-          <li key={s.id} className={styles.listItem}>
-            <div className={styles.content}>
-              <Status status={s.status} />
-              <h2 className={styles.name}>{s.name}</h2>
-              <a href={s.url} className={styles.url}>
-                {s.url}
-              </a>
-            </div>
-            <ActionContainer onDelete={onDelete} service={s} />
-          </li>
-        ))}
-      </ul>
+
+      {isLoading ? (
+        <p>Loading...</p>
+      ) : (
+        <List services={services} onDelete={onDelete} />
+      )}
     </Card>
   );
 };
