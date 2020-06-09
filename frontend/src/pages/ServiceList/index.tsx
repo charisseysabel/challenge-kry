@@ -22,7 +22,11 @@ const ServiceList = () => {
   }, []);
 
   const onDelete = (id: string) => {
-      () => console.log("delete success"),
+    deleteService(id).then(
+      () => {
+        const updatedDto = serviceDto.services.filter((s) => s.id !== id);
+        setServiceDto((prev) => ({ ...prev, services: updatedDto }));
+      },
       () => console.log("delete fail")
     );
   };
