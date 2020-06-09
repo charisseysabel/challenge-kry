@@ -13,6 +13,7 @@ type FormProps = {
   url: string;
   setUrl: (url: string) => void;
   showSuccess?: boolean;
+  isCreate?: boolean;
 };
 
 const Form = ({
@@ -23,6 +24,7 @@ const Form = ({
   url,
   setUrl,
   showSuccess,
+  isCreate = true,
 }: FormProps) => {
   return (
     <>
@@ -63,7 +65,7 @@ const Form = ({
 
         <ButtonContainer>
           <Button type="submit" kind="PRIMARY">
-            Create service
+            {isCreate ? "Create" : "Edit"} service
           </Button>
         </ButtonContainer>
       </form>

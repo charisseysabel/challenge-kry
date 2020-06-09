@@ -38,6 +38,7 @@ const EditService = ({ service }: { service: EditServiceProps }) => {
     url: editUrl,
     setUrl: setEditUrl,
     errors,
+    isCreate: false,
   };
 
   return (
