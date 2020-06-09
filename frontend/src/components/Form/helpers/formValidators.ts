@@ -3,18 +3,27 @@ import { Error } from "../../../types";
 export const validateFields = (
   name: string,
   url: string,
-  errors: Error[],
-  setErrors: (val: React.SetStateAction<Error[]>) => void
+  errors: Set<Error>,
+  setErrors: (val: React.SetStateAction<Set<Error>>) => void
 ) => {
   if (!isValidName(name)) {
-    setErrors((prev: Error[]) => [...prev, "MISSING_NAME"]);
+    setErrors((prev: Set<Error>) => {
+      const set = new Set<Error>(prev);
+      set.add("MISSING_NAME");
+
+      return set;
+    });
   }
 
   if (!isValidUrl(url)) {
-    setErrors((prev: Error[]) => [...prev, "INVALID_URL"]);
+    setErrors((prev: Set<Error>) => {
+      const set = new Set<Error>(prev);
+      set.add("INVALID_URL");
+      return set;
+    });
   }
 
-  return errors.length === 0;
+  return errors.size === 0;
 };
 
 const isValidName = (name: string): boolean => {

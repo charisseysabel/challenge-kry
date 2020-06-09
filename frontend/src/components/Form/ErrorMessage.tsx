@@ -8,12 +8,14 @@ const ERROR_MESSAGES = {
   UNKNOWN_ERROR: "Could not reach the server. Please try again later.",
 };
 
-const ErrorMessage = ({ errors }: { errors: Error[] }) => {
+const ErrorMessage = ({ errors }: { errors: Set<Error> }) => {
+  const errorsAsArray = Array.from(errors);
+
   return (
     <AlertBox type="ERROR">
       <p>Failed to submit form because of the following reasons:</p>
       <ul>
-        {errors.map((e: Error, i: number) => (
+        {errorsAsArray.map((e: Error, i: number) => (
           <li key={i}>{ERROR_MESSAGES[e]}</li>
         ))}
       </ul>

@@ -7,7 +7,7 @@ import styles from "./styles.module.css";
 
 type FormProps = {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
-  errors: Error[];
+  errors: Set<Error>;
   name: string;
   setName: (name: string) => void;
   url: string;
@@ -33,7 +33,7 @@ const Form = ({
           <p>Form submitted successfully</p>
         </AlertBox>
       )}
-      {errors.length !== 0 && <ErrorMessage errors={errors} />}
+      {errors.size !== 0 && <ErrorMessage errors={errors} />}
       <form onSubmit={onSubmit} className={styles.formContainer}>
         <div className={styles.group}>
           <label htmlFor="name" className={styles.label}>
