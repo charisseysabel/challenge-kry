@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Service, ServiceDto } from "../../types";
 import { getAllServices, deleteService } from "../../api/service";
+import { Link } from "react-router-dom";
 
 const INITIAL_VALUES = {
   lastUpdate: "",
@@ -37,7 +38,7 @@ const ServiceList = () => {
         <p>This list was last updated on {serviceDto.lastUpdate}</p>
       )}
       <ul>
-        {serviceDto?.services.map((s: Service) => (
+        {serviceDto.services.map((s: Service) => (
           <li key={s.id}>
             <div>
               <div>
@@ -46,8 +47,14 @@ const ServiceList = () => {
                 <a href={s.url}>{s.url}</a>
               </div>
               <div>
-                <button onClick={() => undefined}>Edit</button>
-                <button onClick={() => undefined}>Delete</button>
+                <Link
+                  to={{
+                    pathname: `/edit/${s.id}`,
+                    state: s,
+                  }}
+                >
+                  Edit
+                </Link>
                 <button onClick={() => onDelete(s.id)}>Delete</button>
               </div>
             </div>
