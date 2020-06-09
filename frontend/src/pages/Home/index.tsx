@@ -8,17 +8,11 @@ function Home() {
     <Card>
       <h1>KRY Service Poller</h1>
       <div className={styles.linkContainer}>
-        <CardLink link={"/create"}>
-          <span className={styles.icon}>
-            <Edit size={40} />
-          </span>
-          Create new service
+        <CardLink link={"/create"} text="Create new service">
+          <Edit size={40} />
         </CardLink>
-        <CardLink link={"/list"}>
-          <span className={styles.icon}>
-            <List size={40} />
-          </span>
-          View all services
+        <CardLink link={"/list"} text="View all services">
+          <List size={40} />
         </CardLink>
       </div>
     </Card>

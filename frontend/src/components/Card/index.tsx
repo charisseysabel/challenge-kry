@@ -9,12 +9,14 @@ export const Card = ({ children }: { children: React.ReactNode }) => {
 type CardLink = {
   children: React.ReactNode;
   link: string;
+  text: string;
 };
 
-export const CardLink = ({ children, link }: CardLink) => {
+export const CardLink = ({ link, children, text }: CardLink) => {
   return (
     <Link to={link} className={styles.cardLink}>
-      {children}
+      <span className={styles.icon}>{children}</span>
+      {text}
     </Link>
   );
 };

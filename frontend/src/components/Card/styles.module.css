@@ -24,3 +24,7 @@
 .cardLink:hover {
   box-shadow: 0 5px 5px rgb(206, 206, 206);
 }
+
+.icon {
+  margin-bottom: 10px;
+}
