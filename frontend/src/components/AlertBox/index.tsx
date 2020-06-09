@@ -3,12 +3,11 @@ import React from "react";
 import styles from "./styles.module.css";
 
 type AlertBox = {
-  message?: string;
   type: "ERROR" | "SUCCESS";
-  children?: React.ReactNode;
+  children: React.ReactNode;
 };
 
-const AlertBox = ({ message, type, children }: AlertBox) => {
+const AlertBox = ({ type, children }: AlertBox) => {
   return (
     <div
       className={className(styles.box, {
@@ -16,7 +15,7 @@ const AlertBox = ({ message, type, children }: AlertBox) => {
         [styles.success]: type === "SUCCESS",
       })}
     >
-      {message ? message : children}
+      {children}
     </div>
   );
 };

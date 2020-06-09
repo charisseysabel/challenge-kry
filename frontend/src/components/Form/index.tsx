@@ -29,7 +29,9 @@ const Form = ({
   return (
     <>
       {showSuccess && (
-        <AlertBox message={"Form submitted successfully"} type="SUCCESS" />
+        <AlertBox type="SUCCESS">
+          <p>Form submitted successfully</p>
+        </AlertBox>
       )}
       {errors.length !== 0 && <ErrorMessage errors={errors} />}
       <form onSubmit={onSubmit} className={styles.formContainer}>
