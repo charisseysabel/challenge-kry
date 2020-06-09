@@ -22,7 +22,7 @@
 
 .content {
   flex: 2;
-  margin-right: 20px;
+  margin: 0 20px 10px 0;
 }
 
 .name {
@@ -32,6 +32,10 @@
 .url {
   font-style: italic;
   color: grey;
+}
+
+.url:hover {
+  color: #52cdf3;
 }
 
 .status {
