@@ -1,6 +1,6 @@
 import React from "react";
+import { Error } from "../types";
 
-type Error = "MISSING_NAME" | "INVALID_URL";
 const ERROR_MESSAGES = {
   MISSING_NAME: "Name is required",
   INVALID_URL: "Url is either missing or invalid",
