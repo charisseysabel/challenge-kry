@@ -1,0 +1,23 @@
+.navList {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.navListItem {
+  margin: 10px;
+}
+
+.navLink {
+  text-decoration: none;
+  padding-bottom: 5px;
+}
+
+.navLink:hover,
+.navLink:focus {
+  border-bottom: 3px solid;
+}
+
+.active {
+  border-bottom: 3px solid;
+}

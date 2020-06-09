@@ -7,26 +7,36 @@ import {
   Switch,
 } from "react-router-dom";
 import "./index.css";
+import styles from "./styles.module.css";
 import CreateService from "./pages/CreateService";
 import Home from "./pages/Home";
 import ServiceList from "./pages/ServiceList";
 import * as serviceWorker from "./serviceWorker";
 import EditService from "./pages/EditService";
 
+const NAVIGATION_LINKS = [
+  { link: "/", text: "Home" },
+  { link: "/create", text: "Create" },
+  { link: "/list", text: "View List" },
+];
+
 const Routing = () => {
   return (
     <Router>
       <nav>
-        <ul>
-          <li>
-            <NavLink to="/">Home</NavLink>
-          </li>
-          <li>
-            <NavLink to="/create">Create</NavLink>
-          </li>
-          <li>
-            <NavLink to="/list">View list</NavLink>
-          </li>
+        <ul className={styles.navList}>
+          {NAVIGATION_LINKS.map((n) => (
+            <li className={styles.navListItem}>
+              <NavLink
+                exact
+                to={n.link}
+                className={styles.navLink}
+                activeClassName={styles.active}
+              >
+                {n.text}
+              </NavLink>
+            </li>
+          ))}
         </ul>
       </nav>
 
