@@ -45,6 +45,7 @@ const Form = ({
             onChange={(e) => setName(e.target.value)}
             required
             className={styles.input}
+            placeholder="My service"
           />
         </div>
 
@@ -60,6 +61,7 @@ const Form = ({
             onChange={(e) => setUrl(e.target.value)}
             required
             className={styles.input}
+            placeholder="http://www.google.com"
           />
         </div>
 
