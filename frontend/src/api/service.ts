@@ -15,7 +15,7 @@ export const addService = async (service: BaseService): Promise<any> => {
 };
 
 export const editService = async (service: Service): Promise<any> => {
-  const res = await axios.put(`${BASE_URL}/service`, { data: service });
+  const res = await axios.put(`${BASE_URL}/service`, service);
   return res.data;
 };
 

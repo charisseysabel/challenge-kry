@@ -127,7 +127,8 @@ public class MainVerticle extends AbstractVerticle {
    * Calling the service twice for the same service will fail.
    */
   private void handlePostService(RoutingContext routingContext) {
-    final JsonObject jsonBody = routingContext.getBodyAsJson();
+    final JsonObject jsonBody = routingContext.getBodyAsJson()
+            .getJsonObject("data");
     try {
       registry.addService(jsonBody.getString("name"), jsonBody.getString("url")).setHandler(
               res -> handleResponse(res, routingContext));
