@@ -105,8 +105,10 @@ public class MainVerticle extends AbstractVerticle {
                 .stream()
                 .map(service ->
                              new JsonObject()
+                                     .put("id", service.getId())
                                      .put("name", service.getName())
-                                     .put("status", Service.toString(service)))
+                                     .put("url", service.getUrl().toString())
+                                     .put("status", service.getStatus().toString()))
                 .collect(Collectors.toList());
         System.out.println("GET result" + jsonServices.size());
 

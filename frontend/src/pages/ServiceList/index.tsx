@@ -28,7 +28,7 @@ const ServiceList = () => {
       )}
       <ul>
         {serviceDto?.services.map((s: Service) => (
-          <li>
+          <li key={s.id}>
             <div>
               <div>
                 <span>{s.status}</span>
