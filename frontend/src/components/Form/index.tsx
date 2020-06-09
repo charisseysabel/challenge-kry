@@ -1,26 +1,8 @@
 import React from "react";
-import { Error } from "../../types";
-import styles from "./styles.module.css";
-import { Card } from "../Card";
 import Button, { ButtonContainer } from "../Button";
-
-const ERROR_MESSAGES = {
-  MISSING_NAME: "Name is required",
-  INVALID_URL: "Url is either missing or invalid",
-};
-
-const ErrorMessage = ({ errors }: { errors: Error[] }) => {
-  return (
-    <div>
-      <p>Failed to submit form because of the following reasons:</p>
-      <ul>
-        {errors.map((e: Error, i: number) => (
-          <li key={i}>{ERROR_MESSAGES[e]}</li>
-        ))}
-      </ul>
-    </div>
-  );
-};
+import styles from "./styles.module.css";
+import ErrorMessage from "./ErrorMessage";
+import { Error } from "../../types";
 
 type FormProps = {
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
