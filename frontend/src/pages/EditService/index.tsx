@@ -42,7 +42,7 @@ const EditService = ({ service }: { service: EditServiceProps }) => {
 
   return (
     <Card>
-      <h1>Edit {editName}</h1>
+      <h1>Edit Service</h1>
       <Form {...formProps} />
     </Card>
   );
