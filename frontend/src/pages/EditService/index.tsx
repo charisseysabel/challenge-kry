@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Form from "../../components/Form";
 import { validateFields } from "../../components/Form/helpers/formValidators";
-import { Error } from "../types";
+import { Error } from "../../types";
 
 type EditServiceProps = {
   id: string;

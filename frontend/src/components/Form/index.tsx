@@ -1,5 +1,5 @@
 import React from "react";
-import { Error } from "../../pages/types";
+import { Error } from "../../types";
 
 const ERROR_MESSAGES = {
   MISSING_NAME: "Name is required",

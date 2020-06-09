@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Service, ServiceDto } from "../types";
+import { Service, ServiceDto } from "../../types";
 
 const INITIAL_VALUES = {
   lastUpdate: "",
