@@ -19,7 +19,7 @@ export const editService = async (service: Service): Promise<any> => {
   return res.data;
 };
 
-export const deleteService = async (serviceId: string): Promise<any> => {
+export const deleteService = async (serviceId: string): Promise<ServiceDto> => {
   const res = await axios.delete(`${BASE_URL}/service`, {
     data: { id: serviceId },
   });

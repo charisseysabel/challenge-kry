@@ -173,7 +173,31 @@ public class MainVerticle extends AbstractVerticle {
     final JsonObject jsonBody = routingContext.getBodyAsJson();
     try {
       registry.removeService(jsonBody.getString("id")).setHandler(
-              res -> handleResponse(res, routingContext));
+              res -> {
+
+                if (res.succeeded()) {
+                  final List<JsonObject> jsonServices = res.result()
+                          .stream()
+                          .map(service ->
+                                  new JsonObject()
+                                          .put("id", service.getId())
+                                          .put("name", service.getName())
+                                          .put("url", service.getUrl().toString())
+                                          .put("status", service.getStatus().toString()))
+                          .collect(Collectors.toList());
+                  System.out.println("GET result" + jsonServices.size());
+
+                  JsonObject dto = new JsonObject()
+                          .put("lastUpdate", Instant.now())
+                          .put("services", new JsonArray(jsonServices));
+
+                  routingContext.response()
+                          .putHeader("content-type", "application/json")
+                          .end(dto.encode());
+                }
+              }
+
+      );
     } catch (IllegalArgumentException e) {
       routingContext.response()
               .putHeader("content-type", "application/json")

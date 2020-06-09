@@ -126,7 +126,7 @@ public class ServiceRegistryDBImp implements ServiceRegistry {
     }
 
     @Override
-    public Future removeService(String serviceName) throws IllegalArgumentException {
+    public Future<List<Service>> removeService(String serviceName) throws IllegalArgumentException {
         validateServiceName(serviceName);
         final Future future = Future.future();
         final JsonArray params = new JsonArray().add(serviceName);
@@ -138,7 +138,7 @@ public class ServiceRegistryDBImp implements ServiceRegistry {
                 future.fail(res.cause());
             }
         });
-        return future;
+        return getServices();
     }
 
     private void validateServiceName(final String serviceName) throws IllegalArgumentException {

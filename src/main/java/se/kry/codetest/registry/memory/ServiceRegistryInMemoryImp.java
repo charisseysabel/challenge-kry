@@ -71,12 +71,12 @@ public class ServiceRegistryInMemoryImp implements ServiceRegistry {
   }
 
   @Override
-  public Future<Boolean> removeService(String serviceId) throws IllegalArgumentException {
+  public Future<List<Service>> removeService(String serviceId) throws IllegalArgumentException {
     if (!this.registry.containsKey(serviceId)) {
       throw new IllegalArgumentException("Service does not exist in the registry");
     }
     this.registry.remove(serviceId);
-    return Future.succeededFuture(true);
+    return getServices();
   }
 
   private void validateServiceName(final String serviceName) throws IllegalArgumentException {
