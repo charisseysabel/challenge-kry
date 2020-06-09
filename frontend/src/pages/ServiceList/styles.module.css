@@ -65,3 +65,9 @@
   composes: button from "../../components/Button/styles.module.css";
   composes: primary from "../../components/Button/styles.module.css";
 }
+
+.lastUpdate {
+  text-align: center;
+  margin-bottom: 10px;
+  display: block;
+}

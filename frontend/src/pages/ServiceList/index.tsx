@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
-import className from "classnames";
-import { Service, ServiceDto } from "../../types";
-import { getAllServices, deleteService } from "../../api/service";
-import { Link } from "react-router-dom";
+import moment from "moment";
+import React, { useEffect, useState } from "react";
+import { deleteService, getAllServices } from "../../api/service";
 import { Card } from "../../components/Card";
-import styles from "./styles.module.css";
-import Button from "../../components/Button";
-import Status from "./Status";
+import { Service, ServiceDto } from "../../types";
 import ActionContainer from "./ActionContainer";
+import Status from "./Status";
+import styles from "./styles.module.css";
 
 const INITIAL_VALUES = {
   lastUpdate: "",
@@ -42,7 +40,9 @@ const ServiceList = () => {
     <Card>
       <h1>Services List</h1>
       {serviceDto.lastUpdate && (
-        <p>This list was last updated on {serviceDto.lastUpdate}</p>
+        <small className={styles.lastUpdate}>
+          Updated {moment().calendar(serviceDto.lastUpdate)}
+        </small>
       )}
       <ul className={styles.list}>
         {serviceDto.services.map((s: Service) => (
