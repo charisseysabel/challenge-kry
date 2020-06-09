@@ -105,6 +105,11 @@ public class ServiceRegistryDBImp implements ServiceRegistry {
     }
 
     @Override
+    public Future<Boolean> updateService(String id, String serviceName, String serviceUrl) throws IllegalArgumentException {
+        return Future.succeededFuture(false);
+    }
+
+    @Override
     public Future<Boolean> updateServiceStatus(String serviceName,
                                     ServiceStatus status) throws IllegalArgumentException {
         validateServiceName(serviceName);

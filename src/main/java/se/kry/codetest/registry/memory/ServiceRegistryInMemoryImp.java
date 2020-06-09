@@ -52,6 +52,25 @@ public class ServiceRegistryInMemoryImp implements ServiceRegistry {
   }
 
   @Override
+  public Future<Boolean> updateService(String id, String serviceName, String serviceUrl) throws IllegalArgumentException {
+    if (!this.registry.containsKey(id)) {
+      throw new IllegalArgumentException("Service could not be found");
+    }
+
+    validateServiceName(serviceName);
+    final URL url = validateServiceUrl(serviceUrl);
+
+    final Service service = this.registry.get(id);
+    service.setName(serviceName);
+    service.setUrl(url);
+    service.setStatus(ServiceStatus.UNKNOWN);
+
+    this.registry.put(id, service);
+    return Future.succeededFuture(true);
+
+  }
+
+  @Override
   public Future<Boolean> removeService(String serviceId) throws IllegalArgumentException {
     if (!this.registry.containsKey(serviceId)) {
       throw new IllegalArgumentException("Service does not exist in the registry");

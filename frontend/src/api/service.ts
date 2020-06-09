@@ -25,3 +25,8 @@ export const deleteService = async (serviceId: string): Promise<any> => {
   });
   return res.data;
 };
+
+export const updateService = async (service: BaseService): Promise<any> => {
+  const res = await axios.put(`${BASE_URL}/service`, service);
+  return res.data;
+};

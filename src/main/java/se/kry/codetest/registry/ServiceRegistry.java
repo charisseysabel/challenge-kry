@@ -26,6 +26,9 @@ public interface ServiceRegistry {
      */
     Future<List<Service>> getServices();
 
+    Future<Boolean> updateService(final String id, final String serviceName, final String serviceUrl)
+            throws IllegalArgumentException;
+
     /**
      * Updates the status of a service in the registry.
      * @param serviceName The name of the service.

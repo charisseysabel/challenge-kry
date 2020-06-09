@@ -14,7 +14,6 @@ import io.vertx.ext.web.RoutingContext;
 import io.vertx.ext.web.handler.BodyHandler;
 import io.vertx.ext.web.handler.CorsHandler;
 import io.vertx.ext.web.handler.StaticHandler;
-import se.kry.codetest.registry.model.Service;
 import se.kry.codetest.registry.ServiceRegistry;
 import se.kry.codetest.registry.ServiceRegistryFactory;
 
@@ -62,6 +61,7 @@ public class MainVerticle extends AbstractVerticle {
             .allowedMethod(io.vertx.core.http.HttpMethod.POST)
             .allowedMethod(io.vertx.core.http.HttpMethod.OPTIONS)
             .allowedMethod(io.vertx.core.http.HttpMethod.DELETE)
+            .allowedMethod(io.vertx.core.http.HttpMethod.PUT)
             .allowedHeader("Access-Control-Request-Method")
             .allowedHeader("Access-Control-Allow-Origin")
             .allowedHeader("Access-Control-Allow-Headers")
@@ -92,6 +92,26 @@ public class MainVerticle extends AbstractVerticle {
     router.get("/service").handler(this::handleGetServices);
     router.post("/service").handler(this::handlePostService);
     router.delete("/service").handler(this::handleDeleteService);
+    router.put("/service").handler(this::handlePutService);
+  }
+
+  private void handlePutService(RoutingContext routingContext) {
+    System.out.println("PUT");
+    final JsonObject jsonBody = routingContext.getBodyAsJson();
+    try {
+      registry.updateService(
+              jsonBody.getString("id"),
+              jsonBody.getString("name"),
+              jsonBody.getString("url")
+      ).setHandler(
+              res -> handleResponse(res, routingContext));
+    } catch (IllegalArgumentException e) {
+      routingContext.response()
+              .putHeader("content-type", "application/json")
+              .setStatusMessage(e.toString())
+              .setStatusCode(400)
+              .end();
+    }
   }
 
   /**

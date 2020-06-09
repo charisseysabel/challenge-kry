@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Form from "../../components/Form";
 import { validateFields } from "../../components/Form/helpers/formValidators";
 import { Error } from "../../types";
+import { updateService } from "../../api/service";
 
 type EditServiceProps = {
   id: string;
@@ -21,10 +22,12 @@ const EditService = ({ service }: { service: EditServiceProps }) => {
     const areAllValid = validateFields(editName, editUrl, errors, setErrors);
     if (!areAllValid) {
       return;
+    } else {
+      updateService({ ...service, name: editName, url: editUrl }).then(
+        () => console.log("success"),
+        () => console.log("failed update")
+      );
     }
-
-    // todo: do api call
-    // api.updateService
   };
 
   const formProps = {
