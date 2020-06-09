@@ -5,9 +5,12 @@ export type ServiceDto = {
   services: Service[];
 };
 
-export type Service = {
-  id: string;
+export interface BaseService {
   name: string;
   url: string;
+}
+
+export interface Service extends BaseService {
+  id: string;
   status: "OK" | "UNKNOWN" | "FAIL";
-};
+}
