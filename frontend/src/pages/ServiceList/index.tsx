@@ -7,6 +7,7 @@ import { Card } from "../../components/Card";
 import styles from "./styles.module.css";
 import Button from "../../components/Button";
 import Status from "./Status";
+import ActionContainer from "./ActionContainer";
 
 const INITIAL_VALUES = {
   lastUpdate: "",
@@ -53,19 +54,7 @@ const ServiceList = () => {
                 {s.url}
               </a>
             </div>
-            <div>
-              <Link
-                to={{
-                  pathname: `/edit/${s.id}`,
-                  state: s,
-                }}
-              >
-                Edit
-              </Link>
-              <Button onClick={() => onDelete(s.id)} type="button">
-                Delete
-              </Button>
-            </div>
+            <ActionContainer onDelete={onDelete} service={s} />
           </li>
         ))}
       </ul>
