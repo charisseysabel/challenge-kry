@@ -51,12 +51,12 @@ public class BackgroundPoller {
         if (pollResult.succeeded()) {
             HttpResponse<Buffer> response = pollResult.result();
             if (response.statusCode() == 200) {
-                registry.updateServiceStatus(service.getName(), ServiceStatus.OK);
+                registry.updateServiceStatus(service.getId(), ServiceStatus.OK);
             } else {
-                registry.updateServiceStatus(service.getName(), ServiceStatus.FAIL);
+                registry.updateServiceStatus(service.getId(), ServiceStatus.FAIL);
             }
         } else {
-            registry.updateServiceStatus(service.getName(), ServiceStatus.FAIL);
+            registry.updateServiceStatus(service.getId(), ServiceStatus.FAIL);
         }
     }
 }

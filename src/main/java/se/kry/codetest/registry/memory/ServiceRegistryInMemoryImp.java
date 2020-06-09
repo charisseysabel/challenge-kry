@@ -31,7 +31,7 @@ public class ServiceRegistryInMemoryImp implements ServiceRegistry {
     service.setUrl(url);
     service.setStatus(ServiceStatus.UNKNOWN);
     service.setAddTime(Instant.now());
-    this.registry.putIfAbsent(serviceName, service);
+    this.registry.putIfAbsent(service.getId(), service);
     return Future.succeededFuture(true);
   }
 
@@ -41,22 +41,22 @@ public class ServiceRegistryInMemoryImp implements ServiceRegistry {
   }
 
   @Override
-  public Future<Boolean> updateServiceStatus(String serviceName, ServiceStatus status) throws IllegalArgumentException {
-    if (!this.registry.containsKey(serviceName)) {
+  public Future<Boolean> updateServiceStatus(String serviceId, ServiceStatus status) throws IllegalArgumentException {
+    if (!this.registry.containsKey(serviceId)) {
       throw new IllegalArgumentException("Service does not exist in the registry");
     }
-    final Service service = this.registry.get(serviceName);
+    final Service service = this.registry.get(serviceId);
     service.setStatus(status);
-    this.registry.put(serviceName, service);
+    this.registry.put(serviceId, service);
     return Future.succeededFuture(true);
   }
 
   @Override
-  public Future<Boolean> removeService(String serviceName) throws IllegalArgumentException {
-    if (!this.registry.containsKey(serviceName)) {
+  public Future<Boolean> removeService(String serviceId) throws IllegalArgumentException {
+    if (!this.registry.containsKey(serviceId)) {
       throw new IllegalArgumentException("Service does not exist in the registry");
     }
-    this.registry.remove(serviceName);
+    this.registry.remove(serviceId);
     return Future.succeededFuture(true);
   }
 

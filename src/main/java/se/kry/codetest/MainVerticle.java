@@ -131,7 +131,7 @@ public class MainVerticle extends AbstractVerticle {
   private void handleDeleteService(RoutingContext routingContext) {
     final JsonObject jsonBody = routingContext.getBodyAsJson();
     try {
-      registry.removeService(jsonBody.getString("name")).setHandler(
+      registry.removeService(jsonBody.getString("id")).setHandler(
               res -> handleResponse(res, routingContext));
     } catch (IllegalArgumentException e) {
       routingContext.response()
