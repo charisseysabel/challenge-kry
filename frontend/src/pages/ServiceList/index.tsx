@@ -25,7 +25,7 @@ const ServiceList = () => {
     <Card>
       <h1>Services List</h1>
       {lastUpdate && (
-        <small className={styles.lastUpdate} aria-live="polite">
+        <small className={styles.lastUpdate} aria-live="polite" role="status">
           Updated {moment().calendar(lastUpdate)}
         </small>
       )}
