@@ -18,7 +18,12 @@ const Item = ({
       <div className={styles.content}>
         <Status status={status} />
         <h2 className={styles.name}>{name}</h2>
-        <a href={url} className={styles.url}>
+        <a
+          href={url}
+          target="_blank"
+          rel="noopener noreferrer"
+          className={styles.url}
+        >
           {url}
         </a>
       </div>
