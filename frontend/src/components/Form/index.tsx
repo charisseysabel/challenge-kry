@@ -1,5 +1,8 @@
 import React from "react";
 import { Error } from "../../types";
+import styles from "./styles.module.css";
+import { Card } from "../Card";
+import Button, { ButtonContainer } from "../Button";
 
 const ERROR_MESSAGES = {
   MISSING_NAME: "Name is required",
@@ -31,28 +34,40 @@ const Form = ({ onSubmit, errors, name, setName, url, setUrl }: FormProps) => {
   return (
     <>
       {errors.length !== 0 && <ErrorMessage errors={errors} />}
-      <form onSubmit={onSubmit}>
-        <label htmlFor="name">Service Name</label>
-        <input
-          type="text"
-          id="name"
-          name="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          required
-        />
+      <form onSubmit={onSubmit} className={styles.formContainer}>
+        <div className={styles.group}>
+          <label htmlFor="name" className={styles.label}>
+            Service Name
+          </label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+            className={styles.input}
+          />
+        </div>
 
-        <label htmlFor="url">URL</label>
-        <input
-          type="url"
-          id="url"
-          name="url"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-          required
-        />
+        <div className={styles.group}>
+          <label htmlFor="url" className={styles.label}>
+            URL
+          </label>
+          <input
+            type="url"
+            id="url"
+            name="url"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            required
+            className={styles.input}
+          />
+        </div>
 
-        <button type="submit">Create service</button>
+        <ButtonContainer>
+          <Button type="submit">Create service</Button>
+        </ButtonContainer>
       </form>
     </>
   );

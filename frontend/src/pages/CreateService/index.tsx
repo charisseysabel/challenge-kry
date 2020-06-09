@@ -3,6 +3,7 @@ import Form from "../../components/Form";
 import { Error } from "../../types";
 import { validateFields } from "../../components/Form/helpers/formValidators";
 import { addService } from "../../api/service";
+import { Card } from "../../components/Card";
 
 const CreateService = () => {
   const [serviceName, setServiceName] = useState<string>("");
@@ -33,7 +34,12 @@ const CreateService = () => {
     errors,
   };
 
-  return <Form {...formProps} />;
+  return (
+    <Card>
+      <h1>Create a new service</h1>
+      <Form {...formProps} />
+    </Card>
+  );
 };
 
 export default CreateService;

@@ -1,0 +1,24 @@
+.button {
+  padding: 10px;
+  border: 1px solid #f5d93b;
+  background-color: #fee140;
+  color: rgb(46, 46, 46);
+  font-weight: bold;
+  border-radius: 3px;
+}
+
+.button:hover:not(.disabled) {
+  cursor: pointer;
+  background-color: #f5d93e;
+}
+
+.disabled {
+  border: 1px solid rgb(211, 211, 211);
+  background-color: rgb(194, 194, 194);
+  color: rgb(88, 88, 88);
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: flex-end;
+}
