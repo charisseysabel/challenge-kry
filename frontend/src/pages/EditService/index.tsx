@@ -3,6 +3,7 @@ import Form from "../../components/Form";
 import { validateFields } from "../../components/Form/helpers/formValidators";
 import { Error } from "../../types";
 import { updateService } from "../../api/service";
+import { Card } from "../../components/Card";
 
 type EditServiceProps = {
   id: string;
@@ -39,7 +40,12 @@ const EditService = ({ service }: { service: EditServiceProps }) => {
     errors,
   };
 
-  return <Form {...formProps} />;
+  return (
+    <Card>
+      <h1>Edit {editName}</h1>
+      <Form {...formProps} />
+    </Card>
+  );
 };
 
 export default EditService;
