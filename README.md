@@ -15,7 +15,7 @@ In another terminal window, navigate to `/frontend`, then do:
 npm i && npm start
 ```
 
-Open `localhost:3000` in the browser. 
+A browser should open up automatically and navigates to `localhost:3000`. 
 
 ---
 
