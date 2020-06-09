@@ -1,14 +1,48 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from "react";
+import ReactDOM from "react-dom";
+import {
+  BrowserRouter as Router,
+  NavLink,
+  Route,
+  Switch,
+} from "react-router-dom";
+import "./index.css";
+import CreateService from "./pages/CreateService";
+import Home from "./pages/Home";
+import ServiceList from "./pages/ServiceList";
+import * as serviceWorker from "./serviceWorker";
+
+const Routing = () => {
+  return (
+    <Router>
+      <nav>
+        <ul>
+          <li>
+            <NavLink to="/">Home</NavLink>
+          </li>
+          <li>
+            <NavLink to="/create">Create</NavLink>
+          </li>
+          <li>
+            <NavLink to="/list">View list</NavLink>
+          </li>
+        </ul>
+      </nav>
+
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/create" component={CreateService} />
+        <Route path="/list" component={ServiceList} />
+      </Switch>
+    </Router>
+  );
+};
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Routing />
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change
