@@ -2,45 +2,13 @@ import moment from "moment";
 import React, { useEffect, useState } from "react";
 import { deleteService, getAllServices } from "../../api/service";
 import { Card } from "../../components/Card";
-import { Service, ServiceDto } from "../../types";
-import ActionContainer from "./ActionContainer";
-import Status from "./Status";
+import { ServiceDto } from "../../types";
 import styles from "./styles.module.css";
+import List from "./List";
 
 const INITIAL_VALUES = {
   lastUpdate: "",
   services: [],
-};
-
-const List = ({
-  services,
-  onDelete,
-}: {
-  services: Service[];
-  onDelete: (id: string) => void;
-}) => {
-  return (
-    <>
-      {services.length > 0 ? (
-        <ul className={styles.list}>
-          {services.map((s: Service) => (
-            <li key={s.id} className={styles.listItem}>
-              <div className={styles.content}>
-                <Status status={s.status} />
-                <h2 className={styles.name}>{s.name}</h2>
-                <a href={s.url} className={styles.url}>
-                  {s.url}
-                </a>
-              </div>
-              <ActionContainer onDelete={onDelete} service={s} />
-            </li>
-          ))}
-        </ul>
-      ) : (
-        <p>No services found</p>
-      )}
-    </>
-  );
 };
 
 const ServiceList = () => {
