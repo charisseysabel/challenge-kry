@@ -1,0 +1,48 @@
+.list {
+  list-style-type: none;
+  padding: 0;
+  margin: 0 auto;
+  max-width: 500px;
+}
+
+.listItem {
+  border: 1px solid #cacaca;
+  padding: 10px;
+  border-radius: 3px;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap-reverse;
+}
+
+.listItem:last-child {
+  margin-bottom: 0;
+}
+
+.name {
+  margin: 0;
+}
+
+.url {
+  font-style: italic;
+  color: grey;
+}
+
+.status {
+  padding: 5px 10px;
+  border-radius: 3px;
+  color: white;
+}
+
+.statusGreen {
+  background-color: green;
+}
+
+.statusFail {
+  background-color: red;
+}
+
+.statusUnknown {
+  background-color: grey;
+}

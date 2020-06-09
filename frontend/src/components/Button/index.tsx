@@ -14,13 +14,15 @@ type ButtonProps = {
   children: React.ReactNode;
   type: "button" | "submit" | "reset";
   disabled: boolean;
+  onClick?: any;
 };
-const Button = ({ children, type, disabled }: ButtonProps) => {
+const Button = ({ children, type, disabled, onClick }: ButtonProps) => {
   return (
     <button
       type={type}
       className={className(styles.button, { [styles.disabled]: disabled })}
       disabled={disabled}
+      onClick={onClick}
     >
       {children}
     </button>
